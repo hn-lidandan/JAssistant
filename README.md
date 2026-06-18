@@ -121,57 +121,6 @@ mvnw.cmd spring-boot:run
 http://localhost:8081/jassistant
 ```
 
-## 接口说明
-
-### 生成会话 ID
-
-```http
-GET /jassistant/ai/sessions/id
-```
-
-响应示例：
-
-```json
-{
-  "sessionId": "xxx"
-}
-```
-
-### 流式聊天
-
-```http
-GET /jassistant/ai/chat?prompt=你好&session_id=xxx
-```
-
-- `prompt`：用户输入内容。
-- `session_id`：会话 ID，需要先调用生成会话 ID 接口获取。
-- 响应类型：`text/event-stream`。
-
-示例：
-
-```bash
-curl -N "http://localhost:8081/jassistant/ai/chat?prompt=你好&session_id=xxx"
-```
-
-### 查询历史会话列表
-
-```http
-GET /jassistant/ai/sessions?limit=20&offset=0
-```
-
-参数说明：
-
-- `limit`：每页数量，默认 20。
-- `offset`：偏移量，默认 0。
-
-### 查询会话详情
-
-```http
-GET /jassistant/ai/sessions/{sessionId}
-```
-
-返回当前会话标题和历史问答上下文。
-
 ## 核心配置
 
 应用配置位于 `src/main/resources/application.yaml`：
