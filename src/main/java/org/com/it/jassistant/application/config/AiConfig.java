@@ -1,0 +1,29 @@
+package org.com.it.jassistant.application.config;
+
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.model.ChatModel;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class AiConfig {
+
+    // 系统角色
+    @Value("${jassistant.ai.system-prompt}")
+    private String systemPrompt;
+
+    /**
+     * 无状态的 ChatClient：只负责"模型 + 默认角色(system prompt)"。
+     * 会话ID、历史记录属于每次请求的运行时状态，由 service 在调用时传入，不在此装配。
+     */
+    @Bean
+    public ChatClient chatClient(ChatModel chatModel) {
+        return ChatClient.builder(chatModel)
+                .defaultSystem(systemPrompt)
+                .defaultAdvisors(new SimpleLoggerAdvisor()) // 添加默认的Advisor,记录日志
+                .build();
+    }
+
+}
