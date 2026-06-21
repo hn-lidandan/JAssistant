@@ -1,8 +1,10 @@
 package org.com.it.jassistant.application.config;
 
+import org.com.it.jassistant.application.constants.SystemConstants;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.model.ChatModel;
+import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +25,15 @@ public class AiConfig {
         return ChatClient.builder(chatModel)
                 .defaultSystem(systemPrompt)
                 .defaultAdvisors(new SimpleLoggerAdvisor()) // 添加默认的Advisor,记录日志
+                .build();
+    }
+
+    @Bean
+    public ChatClient gameChatClient(OpenAiChatModel chatModel) {
+
+        return ChatClient.builder(chatModel)
+                .defaultSystem(SystemConstants.GAME_SYSTEM_PROMPT)
+                .defaultAdvisors(new SimpleLoggerAdvisor())
                 .build();
     }
 
