@@ -2,7 +2,9 @@ package org.com.it.jassistant.facade.endpoint;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.com.it.jassistant.facade.vo.SessionVo;
+import org.com.it.jassistant.application.service.GameService;
+import org.com.it.jassistant.facade.vo.GirlDetailVo;
+import org.com.it.jassistant.facade.vo.QuestionVo;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,21 +17,23 @@ import reactor.core.publisher.Flux;
 @RequestMapping("/ai-game")
 public class GameEndpoint {
 
-    @GetMapping("/sessions/id")
-    @Operation(description = "生成会话ID")
-    public SessionVo generateSessionId() {
+    private final GameService gameService;
 
-        return null;
-    }
-
-
-    @GetMapping(value = "/chat", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/chat")
     @Operation(description = "聊天")
-    public Flux<String> chat(
+    public GirlDetailVo chat(
             @RequestParam("prompt") String prompt,
             @RequestParam("session_id") String sessionId) {
 
-        return null;
+        return gameService.chat(prompt, sessionId);
+    }
+
+
+    @GetMapping("/question")
+    @Operation(description = "产生随机生气问题")
+    public QuestionVo  generateQuestion() {
+
+        return gameService.generateQuestion();
     }
 
 }

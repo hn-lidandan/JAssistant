@@ -21,11 +21,17 @@ public class GameSessionPo implements Serializable {
     //创建时间
     @TableField(value = "create_at")
     private LocalDateTime createAt;
-    //创建人
+    //用户ID
     @TableField(value = "create_by")
     private String createBy;
-    //创建名称
+    //用户名称
     @TableField(value = "create_name")
     private String createName;
+    //女友初始生气理由
+    @TableField(value = "angry_reason")
+    private String angryReason;
+    //当前分数
+    @TableField(value = "init_score")
+    private Integer initScore;
 
 }

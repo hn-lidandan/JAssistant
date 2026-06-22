@@ -23,12 +23,12 @@ public class GameRecordPo implements Serializable {
     //所属会话ID
     @TableField(value = "session_id")
     private String sessionId;
-    //女生（AI）说的内容
-    @TableField(value = "girl_content")
-    private String girlContent;
-    //男生（玩家）说的内容
-    @TableField(value = "boy_content")
-    private String boyContent;
+    //角色类型(字典role_type)
+    @TableField(value = "role_type")
+    private String roleType;
+    //说话内容
+    @TableField(value = "content")
+    private String content;
     //当前分数
     @TableField(value = "current_score")
     private int currentScore;
