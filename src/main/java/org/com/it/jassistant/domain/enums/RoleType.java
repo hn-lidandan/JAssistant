@@ -7,7 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum RoleType implements BaseEnum{
     SYSTEM("SYSTEM","系统"),
-    REPLY("REPLY","玩家");
+    REPLY("REPLY","玩家"),
+    GIRL("GIRL","女友");
 
     private String value;
     private String label;
@@ -24,11 +25,11 @@ public enum RoleType implements BaseEnum{
 
     @Override
     public String getValue() {
-        return "";
+        return value;
     }
 
     @Override
     public String getLabel() {
-        return "";
+        return label;
     }
 }

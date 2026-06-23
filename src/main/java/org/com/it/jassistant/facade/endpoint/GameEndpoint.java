@@ -5,12 +5,10 @@ import lombok.RequiredArgsConstructor;
 import org.com.it.jassistant.application.service.GameService;
 import org.com.it.jassistant.facade.vo.GirlDetailVo;
 import org.com.it.jassistant.facade.vo.QuestionVo;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Flux;
 
 @RequiredArgsConstructor
 @RestController
